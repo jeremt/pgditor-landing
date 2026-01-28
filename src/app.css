@@ -36,4 +36,7 @@ body {
 	overflow: auto;
 	color: var(--color-fg);
 	background-color: var(--color-bg);
+	background-image: radial-gradient(var(--color-bg-1) 8%, transparent 8%);
+	background-position: 0% 0%;
+	background-size: 5vmin 5vmin;
 }
