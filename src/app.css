@@ -12,14 +12,10 @@
 	--color-bg-2: #efecda44;
 	--color-bg-card: #212120cc;
 	--color-backdrop: #efecda22;
-	--color-yellow: #ffd074;
-	--color-cyan: #17f1d1;
-	--color-purple: #b087ff;
-	--color-pink: #ff76ce;
-	--color-error: #ee795f;
-	--color-success: #b4f55e;
+	--color-gold: #f2cf84;
+
 	--color-primary: var(--color-yellow);
-	--radius-btn: 0.5rem;
+	--radius-btn: 2rem;
 	--radius-input: 0.5em;
 	--radius-card: 1rem;
 	--input-height: 2.4em;

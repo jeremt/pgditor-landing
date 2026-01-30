@@ -96,7 +96,9 @@
 				<span class="badge">Prerelease</span> |
 			{/if}
 			<span>Published on {new Date(data.release.published_at).toLocaleDateString()}</span> |
-			<a target="_blank" href={data.release.html_url} class="btn-main">{data.release.tag_name}</a>
+			<a target="_blank" href={data.release.html_url} class="btn-main underline"
+				>{data.release.tag_name}</a
+			>
 		{/if}
 	</small>
 	<div class="rounded-2xl p-2 border border-bg-1 flex flex-col bg-bg mt-4">
@@ -308,7 +310,7 @@
 </section>
 <section id="features" class="flex flex-col mx-auto items-center gap-4 px-4 pt-36 pb-16">
 	<h2 class="font-bold text-3xl">Want to help the project?</h2>
-	<p class="pb-4 max-w-xl">
+	<p class="pb-4 max-w-xl text-center">
 		It's still a very early stage project, so the best way to help is to give it a try and report
 		some bugs or suggest features through <a
 			class="underline"
@@ -318,7 +320,7 @@
 			issues
 		</a>.
 	</p>
-	<p class="pb-4 max-w-xl">
+	<p class="pb-4 max-w-xl text-center">
 		You can also give it a star <a
 			target="_blank"
 			class="underline"
@@ -352,29 +354,27 @@
 		outline: none;
 		border: none;
 		height: var(--input-height);
-		padding-inline: 0.8em;
+		padding-inline: 1em;
 		transition: 0.3s all;
 		&.main {
 			color: var(--color-bg);
 			background-color: var(--color-fg);
-			background-image: linear-gradient(transparent, var(--color-gold));
+			&:hover {
+				background-color: var(--color-gold);
+			}
 			animation: pulse 1s infinite ease-in-out;
 		}
 		&.secondary {
 			color: var(--color-fg);
 			background-color: var(--color-bg-1);
+			&:hover {
+				background-color: var(--color-bg-2);
+			}
 		}
 		&:disabled {
 			opacity: 0.3;
 			cursor: default;
 			pointer-events: none;
-		}
-		&:hover,
-		&:focus-visible {
-			translate: 0 -0.1rem;
-		}
-		&:active {
-			translate: 0 0.15em;
 		}
 	}
 	@keyframes fade {
