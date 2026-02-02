@@ -101,6 +101,13 @@
 			>
 		{/if}
 	</small>
+	{#if userOS === 'mac-arm' || userOS === 'mac-intel'}
+		<div class="text-sm text-fg-1 bg-bg text-center border border-bg-1 p-4 rounded-2xl">
+			⚠️ Well, I dont want to give Apple 100$/year to share my app for free.<br />
+			So, to use the app on mac, you might have to run this in your terminal after install:<br />
+			<code class="bg-bg-1 px-1 rounded-md">xattr -cr /Applications/PGditor.app</code>
+		</div>
+	{/if}
 	<div class="rounded-2xl p-2 border border-bg-1 flex flex-col bg-bg mt-4">
 		<div class="flex gap-2 pb-2">
 			<div class="rounded-full bg-bg-1 sm:w-4 sm:h-4 w-3 h-3"></div>
