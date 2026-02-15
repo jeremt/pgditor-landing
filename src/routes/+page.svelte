@@ -52,7 +52,7 @@
 	let currentImg = $state(1);
 	$effect(() => {
 		setInterval(() => {
-			if (currentImg === 5) {
+			if (currentImg === 6) {
 				currentImg = 1;
 			} else {
 				currentImg += 1;
@@ -102,26 +102,26 @@
 		{/if}
 	</small>
 	{#if userOS === 'mac-arm' || userOS === 'mac-intel'}
-		<div class="text-sm text-fg-1 bg-bg text-center border border-bg-1 p-4 rounded-2xl">
+		<div class="text-sm text-error bg-bg text-center border border-error p-4 rounded-2xl">
 			⚠️ Well, I dont want to give Apple 100$/year to share my app for free.<br />
 			So, to use the app on mac, you might have to run this in your terminal after install:<br />
 			<code class="bg-bg-1 px-1 rounded-md">xattr -cr /Applications/PGditor.app</code>
 		</div>
 	{/if}
 	<div class="rounded-2xl p-2 border border-bg-1 flex flex-col bg-bg mt-4">
-		<div class="flex gap-2 pb-2">
-			<div class="rounded-full bg-bg-1 sm:w-4 sm:h-4 w-3 h-3"></div>
-			<div class="rounded-full bg-bg-1 sm:w-4 sm:h-4 w-3 h-3"></div>
-			<div class="rounded-full bg-bg-1 sm:w-4 sm:h-4 w-3 h-3"></div>
+		<div class="flex gap-1 pb-1">
+			<div class="rounded-full bg-bg-1 sm:w-3 sm:h-3 w-2 h-2"></div>
+			<div class="rounded-full bg-bg-1 sm:w-3 sm:h-3 w-2 h-2"></div>
+			<div class="rounded-full bg-bg-1 sm:w-3 sm:h-3 w-2 h-2"></div>
 		</div>
 		<img
-			class="screenshot border border-bg-1 rounded-2xl"
+			class="screenshot border border-bg-1 rounded-xl max-w-full w-3xl"
 			src="/{currentImg}.webp"
 			alt="Table view"
 		/>
 	</div>
 	<div class="flex gap-2">
-		{#each [1, 2, 3, 4, 5] as i}
+		{#each [1, 2, 3, 4, 5, 6] as i}
 			<button
 				class="rounded-full cursor-pointer w-3 h-3"
 				class:bg-fg={currentImg === i}
@@ -133,7 +133,7 @@
 	</div>
 </section>
 
-<section id="features" class="flex flex-col mx-auto items-center gap-4 px-4 pt-36">
+<section id="features" class="flex flex-col mx-auto items-center gap-4 px-4 pt-24">
 	<h2 class="font-bold text-3xl">Everything you need to manage your databases</h2>
 	<p class="pb-4">Powerful features while maintaining simplicity and ease of use.</p>
 	<div class="grid">

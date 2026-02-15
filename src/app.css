@@ -13,6 +13,7 @@
 	--color-bg-card: #212120cc;
 	--color-backdrop: #efecda22;
 	--color-gold: #f2cf84;
+	--color-error: #ee795f;
 
 	--color-primary: var(--color-yellow);
 	--radius-btn: 2rem;
