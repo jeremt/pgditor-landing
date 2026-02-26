@@ -52,7 +52,7 @@
 	let currentImg = $state(1);
 	$effect(() => {
 		setInterval(() => {
-			if (currentImg === 6) {
+			if (currentImg === 7) {
 				currentImg = 1;
 			} else {
 				currentImg += 1;
@@ -65,8 +65,8 @@
 	<Logo />
 	<h1 class="sm:text-7xl text-5xl">PGditor</h1>
 	<p class="sm:text-xl text-md text-center">
-		A minimalistic, fast & beautiful app to manager your Postgres databases<br />
-		(and it's free & open source)
+		Yet another database editor, but optimized for postgres specific features
+		<br /> (and it's free & open source)
 	</p>
 	<div class="flex items-center gap-6 flex-wrap justify-center">
 		{#if !(data.release instanceof Error) && !(assetForOs instanceof Error) && assetForOs !== undefined}
@@ -121,7 +121,7 @@
 		/>
 	</div>
 	<div class="flex gap-2">
-		{#each [1, 2, 3, 4, 5, 6] as i}
+		{#each [1, 2, 3, 4, 5, 6, 7] as i}
 			<button
 				class="rounded-full cursor-pointer w-3 h-3"
 				class:bg-fg={currentImg === i}
@@ -134,8 +134,8 @@
 </section>
 
 <section id="features" class="flex flex-col mx-auto items-center gap-4 px-4 pt-24">
-	<h2 class="font-bold text-3xl">Everything you need to manage your databases</h2>
-	<p class="pb-4">Powerful features while maintaining simplicity and ease of use.</p>
+	<h2 class="font-bold text-3xl">Everything you need to work with Postgres</h2>
+	<p class="pb-4">Powerful features while keeping it simple and minimalistic.</p>
 	<div class="grid">
 		<div>
 			<svg
