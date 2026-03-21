@@ -49,26 +49,46 @@
 		}
 	});
 
-	let currentImg = $state(1);
-	$effect(() => {
-		setInterval(() => {
-			if (currentImg === 7) {
-				currentImg = 1;
-			} else {
-				currentImg += 1;
-			}
-		}, 5000);
-	});
+	let currentSlide = $state(1);
+	const totalSlides = 8;
 </script>
 
+<header class="fixed left-0 right-0 top-0 flex items-center justify-center bg-bg z-1">
+	<div class="max-w-4xl w-full mx-auto flex items-center gap-2 border-b border-bg-1 p-4">
+		<Logo />
+		<div class="text-2xl">PGditor</div>
+		{#if !(data.release instanceof Error) && !(assetForOs instanceof Error) && assetForOs !== undefined}
+			<a
+				class="btn bg-fg text-bg ms-auto text-sm!"
+				onmouseenter={play}
+				onclick={play}
+				href={assetForOs.browser_download_url}
+			>
+				<DownloadIcon />
+				{#if userOS === 'mac-arm' || userOS === 'mac-intel'}
+					Download for Mac
+				{:else if userOS === 'windows'}
+					Download for Windows
+				{:else if userOS === 'linux'}
+					Download for Linux
+				{/if}
+			</a>
+		{/if}
+		<a class="btn secondary text-sm!" href="https://github.com/jeremt/pgditor" target="_blank"
+			><GithubIcon /><span class="hidden sm:inline">View on Github</span></a
+		>
+	</div>
+</header>
 <section id="intro" class="flex flex-col mx-auto items-center gap-4 px-4 pt-36">
-	<Logo />
-	<h1 class="sm:text-7xl text-5xl">PGditor</h1>
-	<p class="sm:text-xl text-md text-center">
-		Yet another database editor, but optimized for postgres specific features
-		<br /> (and it's free & open source)
+	<h1 class="sm:text-4xl text-3xl text-balance text-center font-bold mb-4">
+		Modern Postgres deserves a modern editor
+	</h1>
+	<p class="sm:text-xl text-md text-center max-w-2xl text-fg-1">
+		Most DB GUIs feel generic. PGditor is built for Postgres: visual filters like Supabase,
+		dedicated editors for JSONB and PostGIS, AI queries, and schema graphs. All without the clutter.
 	</p>
-	<div class="flex items-center gap-6 flex-wrap justify-center">
+	<p class="text-fg-1 sm:text-xl text-md">(and it's free & open source)</p>
+	<div class="flex items-center gap-6 flex-wrap justify-center mt-6">
 		{#if !(data.release instanceof Error) && !(assetForOs instanceof Error) && assetForOs !== undefined}
 			<a
 				class="btn main text-xl"
@@ -114,20 +134,32 @@
 			<div class="rounded-full bg-bg-1 sm:w-3 sm:h-3 w-2 h-2"></div>
 			<div class="rounded-full bg-bg-1 sm:w-3 sm:h-3 w-2 h-2"></div>
 		</div>
-		<img
-			class="screenshot border border-bg-1 rounded-xl max-w-full w-3xl"
-			src="/{currentImg}.webp"
-			alt="Table view"
-		/>
+		{#if currentSlide === 1}
+			<video
+				class="screenshot border border-bg-1 rounded-xl max-w-full w-3xl"
+				autoplay
+				muted
+				loop
+				playsinline
+			>
+				<source src="/video.mp4" type="video/mp4" />
+			</video>
+		{:else}
+			<img
+				class="screenshot border border-bg-1 rounded-xl max-w-full w-3xl"
+				src="/{currentSlide - 1}.webp"
+				alt="Table view"
+			/>
+		{/if}
 	</div>
 	<div class="flex gap-2">
-		{#each [1, 2, 3, 4, 5, 6, 7] as i}
+		{#each Array(totalSlides) as _, i (i)}
 			<button
 				class="rounded-full cursor-pointer w-3 h-3"
-				class:bg-fg={currentImg === i}
-				class:bg-bg-1={currentImg !== i}
-				aria-label="i"
-				onclick={() => (currentImg = i)}
+				class:bg-fg={currentSlide === i + 1}
+				class:bg-bg-1={currentSlide !== i + 1}
+				aria-label="Slide {i + 1}"
+				onclick={() => (currentSlide = i + 1)}
 			></button>
 		{/each}
 	</div>
@@ -148,13 +180,13 @@
 				stroke-width="2"
 				stroke-linecap="round"
 				stroke-linejoin="round"
-				style:transform="rotate(90deg)"
-				><path d="M9 2v6"></path><path d="M15 2v6"></path><path d="M12 17v5"></path><path
-					d="M5 8h14"
-				></path><path d="M6 11V8h12v3a6 6 0 1 1-12 0Z"></path></svg
+				class="lucide lucide-bot"
+				><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path
+					d="M2 14h2"
+				></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg
 			>
-			<h3>Manage connections</h3>
-			<p>Save multiple database connections and easily switch between databases.</p>
+			<h3>AI Query Builder</h3>
+			<p>Describe data needs in natural language, get optimized SQL queries.</p>
 		</div>
 		<div>
 			<svg
@@ -232,30 +264,8 @@
 					d="M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"
 				></path></svg
 			>
-			<h3>JSON Editor</h3>
-			<p>Edit your json and jsonb data with a powerful VSCode-like editor.</p>
-		</div>
-		<div>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="24"
-				height="24"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				class="lucide lucide-link-2"
-				><path d="M9 17H7A5 5 0 0 1 7 7h2"></path><path d="M15 7h2a5 5 0 1 1 0 10h-2"></path><line
-					x1="8"
-					x2="16"
-					y1="12"
-					y2="12"
-				></line></svg
-			>
-			<h3>Search foreign key</h3>
-			<p>Interactive foreign key selection with table visualization.</p>
+			<h3>PG Type Editors</h3>
+			<p>Custom editors for JSONB, Geometry (PostGIS), arrays, foreign keys, and more.</p>
 		</div>
 		<div>
 			<svg
@@ -313,9 +323,30 @@
 			<h3>Export data</h3>
 			<p>Export your table or data selection in JSON, CSV and SQL.</p>
 		</div>
+		<div>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				class="lucide lucide-git-branch"
+				><line x1="6" x2="6" y1="3" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle
+					cx="6"
+					cy="18"
+					r="3"
+				></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg
+			>
+			<h3>Schema Graph</h3>
+			<p>Visualize your tables as an interactive graph of relationships.</p>
+		</div>
 	</div>
 </section>
-<section id="features" class="flex flex-col mx-auto items-center gap-4 px-4 pt-36 pb-16">
+<section id="help" class="flex flex-col mx-auto items-center gap-4 px-4 pt-24 pb-16">
 	<h2 class="font-bold text-3xl">Want to help the project?</h2>
 	<p class="pb-4 max-w-xl text-center">
 		It's still a very early stage project, so the best way to help is to give it a try and report

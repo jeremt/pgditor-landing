@@ -2,12 +2,20 @@
 	<path
 		d="M46.1304 46.1304V67.6956C46.1304 67.6956 46.1304 89.2609 24.5652 89.2609C3 89.2609 3 67.6956 3 67.6956V3H46.1304C46.1304 3 105.435 3 105.435 56.913C105.435 89.2609 105.435 78.4783 105.435 100.043"
 		stroke="currentColor"
-		stroke-width="6"
+		stroke-width="12"
 	/>
 	<path
 		d="M105.435 62.3043H132.391V100.043C132.391 100.043 132.391 127 105.435 127C78.4783 127 78.4783 100.043 78.4783 100.043V89.2608"
 		stroke="currentColor"
-		stroke-width="6"
+		stroke-width="12"
 	/>
 	<circle cx="78.4782" cy="67.6956" r="5.3913" fill="currentColor" />
 </svg>
+
+<style>
+	svg {
+		width: 2rem;
+		height: 1.5rem;
+		flex-shrink: 0;
+	}
+</style>
