@@ -54,7 +54,7 @@
 </script>
 
 <header class="fixed left-0 right-0 top-0 flex items-center justify-center bg-bg z-1">
-	<div class="max-w-4xl w-full mx-auto flex items-center gap-2 border-b border-bg-1 p-4">
+	<div class="max-w-4xl w-full mx-auto flex items-center gap-2 border-b border-bg-2 p-4">
 		<Logo />
 		<div class="text-2xl">PGditor</div>
 		{#if !(data.release instanceof Error) && !(assetForOs instanceof Error) && assetForOs !== undefined}
@@ -80,6 +80,24 @@
 	</div>
 </header>
 <section id="intro" class="flex flex-col mx-auto items-center gap-4 px-4 pt-36">
+	<div class="text-fg-1 py-2 px-4 border border-bg-2 rounded-3xl flex gap-2 items-center">
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			class="lucide lucide-heart"
+			><path
+				d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"
+			></path></svg
+		>
+		Free & open source
+	</div>
 	<h1 class="sm:text-4xl text-3xl text-balance text-center font-bold mb-4">
 		Modern Postgres deserves a modern editor
 	</h1>
@@ -87,14 +105,14 @@
 		Most DB GUIs feel generic. PGditor is built for Postgres: visual filters like Supabase,
 		dedicated editors for JSONB and PostGIS, AI queries, and schema graphs. All without the clutter.
 	</p>
-	<p class="text-fg-1 sm:text-xl text-md">(and it's free & open source)</p>
 	<div class="flex items-center gap-6 flex-wrap justify-center mt-6">
 		{#if !(data.release instanceof Error) && !(assetForOs instanceof Error) && assetForOs !== undefined}
 			<a
+				rel="external"
+				href={assetForOs.browser_download_url}
 				class="btn main text-xl"
 				onmouseenter={play}
 				onclick={play}
-				href={assetForOs.browser_download_url}
 			>
 				<DownloadIcon />
 				{#if userOS === 'mac-arm' || userOS === 'mac-intel'}
@@ -116,6 +134,7 @@
 				<span class="badge">Prerelease</span> |
 			{/if}
 			<span>Published on {new Date(data.release.published_at).toLocaleDateString()}</span> |
+			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
 			<a target="_blank" href={data.release.html_url} class="btn-main underline"
 				>{data.release.tag_name}</a
 			>
@@ -128,15 +147,15 @@
 			<code class="bg-bg-1 px-1 rounded-md">xattr -cr /Applications/PGditor.app</code>
 		</div>
 	{/if}
-	<div class="rounded-2xl p-2 border border-bg-1 flex flex-col bg-bg mt-4">
+	<div class="rounded-2xl p-2 border border-bg-2 flex flex-col bg-bg mt-4">
 		<div class="flex gap-1 pb-1">
-			<div class="rounded-full bg-bg-1 sm:w-3 sm:h-3 w-2 h-2"></div>
-			<div class="rounded-full bg-bg-1 sm:w-3 sm:h-3 w-2 h-2"></div>
-			<div class="rounded-full bg-bg-1 sm:w-3 sm:h-3 w-2 h-2"></div>
+			<div class="rounded-full bg-bg-2 sm:w-3 sm:h-3 w-2 h-2"></div>
+			<div class="rounded-full bg-bg-2 sm:w-3 sm:h-3 w-2 h-2"></div>
+			<div class="rounded-full bg-bg-2 sm:w-3 sm:h-3 w-2 h-2"></div>
 		</div>
 		{#if currentSlide === 1}
 			<video
-				class="screenshot border border-bg-1 rounded-xl max-w-full w-3xl"
+				class="screenshot border border-bg-2 rounded-xl max-w-full w-3xl"
 				autoplay
 				muted
 				loop
@@ -146,7 +165,7 @@
 			</video>
 		{:else}
 			<img
-				class="screenshot border border-bg-1 rounded-xl max-w-full w-3xl"
+				class="screenshot border border-bg-2 rounded-xl max-w-full w-3xl"
 				src="/{currentSlide - 1}.webp"
 				alt="Table view"
 			/>
@@ -446,7 +465,7 @@
 			flex-direction: column;
 			padding: 1.5rem;
 			border-radius: 1rem;
-			border: 1px solid var(--color-bg-1);
+			border: 1px solid var(--color-bg-2);
 			background-color: var(--color-bg);
 			& > svg {
 				width: 2rem;
