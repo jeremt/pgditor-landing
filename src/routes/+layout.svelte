@@ -3,6 +3,7 @@
 	import '@fontsource-variable/space-grotesk';
 	import '@fontsource/space-mono/400.css';
 	import '@fontsource/space-mono/700.css';
+	import '@fontsource/gloria-hallelujah';
 
 	import favicon from '$lib/assets/favicon.svg';
 

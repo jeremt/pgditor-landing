@@ -53,67 +53,43 @@
 	const totalSlides = 8;
 </script>
 
-<header class="fixed left-0 right-0 top-0 flex items-center justify-center bg-bg z-1">
-	<div class="max-w-4xl w-full mx-auto flex items-center gap-2 border-b border-bg-2 p-4">
-		<Logo />
-		<div class="text-2xl">PGditor</div>
-		{#if !(data.release instanceof Error) && !(assetForOs instanceof Error) && assetForOs !== undefined}
-			<a
-				class="btn bg-fg text-bg ms-auto text-sm!"
-				onmouseenter={play}
-				onclick={play}
-				href={assetForOs.browser_download_url}
-			>
-				<DownloadIcon />
-				{#if userOS === 'mac-arm' || userOS === 'mac-intel'}
-					Download for Mac
-				{:else if userOS === 'windows'}
-					Download for Windows
-				{:else if userOS === 'linux'}
-					Download for Linux
-				{/if}
-			</a>
-		{/if}
-		<a class="btn secondary text-sm!" href="https://github.com/jeremt/pgditor" target="_blank"
-			><GithubIcon /><span class="hidden sm:inline">View on Github</span></a
-		>
-	</div>
+<header
+	class="fixed left-0 right-0 top-0 flex items-center justify-center bg-bg z-1 p-4 border-b border-bg-2"
+>
+	<Logo />
+	<div class="text-2xl">PGditor</div>
+	{#if !(data.release instanceof Error) && !(assetForOs instanceof Error) && assetForOs !== undefined}
+		{@const href = assetForOs.browser_download_url}
+		<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+		<a class="btn bg-fg text-bg ms-auto text-sm!" onmouseenter={play} onclick={play} {href}>
+			<DownloadIcon />
+			{#if userOS === 'mac-arm' || userOS === 'mac-intel'}
+				Download for Mac
+			{:else if userOS === 'windows'}
+				Download for Windows
+			{:else if userOS === 'linux'}
+				Download for Linux
+			{/if}
+		</a>
+	{/if}
+	<a class="btn secondary text-sm!" href="https://github.com/jeremt/pgditor" target="_blank"
+		><GithubIcon /><span class="hidden sm:inline">View on Github</span></a
+	>
 </header>
-<section id="intro" class="flex flex-col mx-auto items-center gap-4 px-4 pt-36">
-	<div class="text-fg-1 py-2 px-4 border border-bg-2 rounded-3xl flex gap-2 items-center">
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			width="24"
-			height="24"
-			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			stroke-width="2"
-			stroke-linecap="round"
-			stroke-linejoin="round"
-			class="lucide lucide-heart"
-			><path
-				d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"
-			></path></svg
-		>
-		Free & open source
-	</div>
-	<h1 class="sm:text-4xl text-3xl text-balance text-center font-bold mb-4">
+<section id="intro" class="flex flex-col mx-auto items-center gap-4 px-4 pt-40">
+	<h1 class="sm:text-5xl text-3xl text-balance text-center mb-4 font-cursive">
 		Modern Postgres deserves a modern editor
 	</h1>
-	<p class="sm:text-xl text-md text-center max-w-2xl text-fg-1">
+	<p class="sm:text-xl text-md text-center max-w-4xl text-fg-1">
 		Most DB GUIs feel generic. PGditor is built for Postgres: visual filters like Supabase,
 		dedicated editors for JSONB and PostGIS, AI queries, and schema graphs. All without the clutter.
 	</p>
+	<p class="sm:text-xl text-md text-center max-w-2xl text-fg-1">(and it's free and open source)</p>
 	<div class="flex items-center gap-6 flex-wrap justify-center mt-6">
 		{#if !(data.release instanceof Error) && !(assetForOs instanceof Error) && assetForOs !== undefined}
-			<a
-				rel="external"
-				href={assetForOs.browser_download_url}
-				class="btn main text-xl"
-				onmouseenter={play}
-				onclick={play}
-			>
+			{@const href = assetForOs.browser_download_url}
+			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+			<a rel="external" {href} class="btn main text-xl" onmouseenter={play} onclick={play}>
 				<DownloadIcon />
 				{#if userOS === 'mac-arm' || userOS === 'mac-intel'}
 					Download for Mac
@@ -147,7 +123,7 @@
 			<code class="bg-bg-1 px-1 rounded-md">xattr -cr /Applications/PGditor.app</code>
 		</div>
 	{/if}
-	<div class="rounded-2xl p-2 border border-bg-2 flex flex-col bg-bg mt-4">
+	<div class="rounded-2xl p-2 border border-bg-2 flex flex-col bg-bg mt-10">
 		<div class="flex gap-1 pb-1">
 			<div class="rounded-full bg-bg-2 sm:w-3 sm:h-3 w-2 h-2"></div>
 			<div class="rounded-full bg-bg-2 sm:w-3 sm:h-3 w-2 h-2"></div>
@@ -172,6 +148,7 @@
 		{/if}
 	</div>
 	<div class="flex gap-2">
+		<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
 		{#each Array(totalSlides) as _, i (i)}
 			<button
 				class="rounded-full cursor-pointer w-3 h-3"

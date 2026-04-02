@@ -36,6 +36,7 @@
 	},
 	"dependencies": {
 		"@fontsource-variable/space-grotesk": "^5.2.10",
+		"@fontsource/gloria-hallelujah": "^5.2.8",
 		"@fontsource/space-mono": "^5.2.9"
 	}
 }
